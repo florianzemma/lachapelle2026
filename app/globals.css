@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fafaf8;
+  --foreground: #2f2f2f;
+
+  /* Vert nature – campagne iséroise */
+  --primary: rgb(28 61 44);
+  --primary-light: #6fa98a;
+
+  /* Or / pisé dauphinois */
+  --secondary: rgb(231 221 202 / 0.4);
+  --secondary-hover: #e7ddca80;
+
+  /* UI */
+  --muted: #6b7280;
+  --border: #e5e7eb;
+
+  --font-inter: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter);
+  font-feature-settings: "cv11", "ss01";
+  font-variation-settings: "opsz" auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Fix pour PrismicRichText - enlever les marges par défaut */
+.prismic-content > *:first-child {
+  margin-top: 0;
+}
+
+.prismic-content > *:last-child {
+  margin-bottom: 0;
+}
+
+.prismic-content p {
+  margin: 0;
+}
+
+/* Hero title styles - Applied to PrismicRichText children */
+.hero-title * {
+  @apply font-bold tracking-tight text-white;
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+  text-wrap: balance;
+}
+
+/* Hero description styles - Applied to PrismicRichText children */
+.hero-description * {
+  @apply leading-7 text-white;
+  @apply text-lg sm:text-xl md:text-2xl;
+  @apply mt-6;
+  text-wrap: balance;
+}

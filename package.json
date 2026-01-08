@@ -1,0 +1,42 @@
+{
+  "name": "chapelle-tour-2026",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write .",
+    "prepare": "husky install",
+    "slicemachine": "start-slicemachine"
+  },
+  "dependencies": {
+    "@prismicio/client": "^7.21.3",
+    "@prismicio/next": "^2.0.2",
+    "@prismicio/react": "^3.2.2",
+    "next": "^16.1.1",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@slicemachine/adapter-next": "^0.3.93",
+    "@types/node": "^22.10.6",
+    "@types/react": "^19.0.6",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.18.0",
+    "eslint-config-next": "^16.1.1",
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-sonarjs": "^3.0.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "slice-machine-ui": "^2.20.5",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.3"
+  }
+}

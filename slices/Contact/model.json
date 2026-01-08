@@ -1,0 +1,58 @@
+{
+  "id": "contact",
+  "type": "SharedSlice",
+  "name": "Contact",
+  "description": "Contact form section",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "Contactez-nous",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "section_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Description",
+            "placeholder": "Une question ? N'hésitez pas à nous écrire",
+            "allowTargetBlank": true,
+            "single": "paragraph"
+          }
+        },
+        "submit_button_text": {
+          "type": "Text",
+          "config": {
+            "label": "Submit Button Text",
+            "placeholder": "Envoyer"
+          }
+        },
+        "email": {
+          "type": "Text",
+          "config": {
+            "label": "Email",
+            "placeholder": "contact@example.com"
+          }
+        },
+        "phone": {
+          "type": "Text",
+          "config": {
+            "label": "Phone",
+            "placeholder": "+33 1 23 45 67 89"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

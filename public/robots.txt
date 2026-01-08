@@ -1,0 +1,6 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location (update with your domain)
+Sitemap: https://chapelle-tour-2026.vercel.app/sitemap.xml

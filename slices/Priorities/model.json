@@ -1,0 +1,75 @@
+{
+  "id": "priorities",
+  "type": "SharedSlice",
+  "name": "Priorities",
+  "description": "Section des priorités de la campagne électorale",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "Nos Priorités pour 2026",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "section_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Description",
+            "placeholder": "Description de nos engagements pour La Chapelle de la Tour",
+            "allowTargetBlank": true,
+            "single": "paragraph"
+          }
+        },
+        "priorities": {
+          "type": "Group",
+          "config": {
+            "label": "Priorities",
+            "fields": {
+              "icon": {
+                "type": "Text",
+                "config": {
+                  "label": "Icon",
+                  "placeholder": "🌱 (emoji ou texte)"
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "Titre de la priorité"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "Description détaillée de la priorité",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              }
+            }
+          }
+        },
+        "cta_text": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Text",
+            "placeholder": "Nous contacter"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
