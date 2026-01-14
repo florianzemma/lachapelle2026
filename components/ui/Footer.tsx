@@ -33,11 +33,6 @@ const Footer = () => {
             </a>
           </div>
         </div>
-        <div className="mt-8 border-t border-slate-200 pt-8 text-center">
-          <p className="text-xs text-slate-500">
-            Site créé pour la campagne électorale municipale 2026
-          </p>
-        </div>
       </div>
     </footer>
   );

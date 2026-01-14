@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "bilan": {
+              "type": "SharedSlice"
+            },
             "priorities": {
               "type": "SharedSlice"
             },

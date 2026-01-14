@@ -28,8 +28,7 @@ type PickContentRelationshipFieldData<
       TSubRelationship["customtypes"],
       TLang
     >;
-  } & {
-    // Group
+  } & { // Group
     [TGroup in Extract<
       TRelationship["fields"][number],
       | prismic.CustomTypeModelFetchGroupLevel1
@@ -41,8 +40,7 @@ type PickContentRelationshipFieldData<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
-  } & {
-    // Other fields
+  } & { // Other fields
     [TFieldKey in Extract<
       TRelationship["fields"][number],
       string
@@ -70,6 +68,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type HomepageDocumentDataSlicesSlice =
+  | BilanSlice
   | PrioritiesSlice
   | ContactSlice
   | TeamSlice
@@ -139,6 +138,144 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = HomepageDocument;
+
+/**
+ * Item in *Bilan → Default → Primary → Bilan Items*
+ */
+export interface BilanSliceDefaultPrimaryBilanItemsItem {
+  /**
+   * Icône field in *Bilan → Default → Primary → Bilan Items*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Choisir une icône
+   * - **API ID Path**: bilan.default.primary.bilan_items[].icon
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  icon: prismic.SelectField<
+    | "finances"
+    | "financement"
+    | "attractivite"
+    | "commerce"
+    | "social"
+    | "environnement"
+    | "vivre_ensemble"
+    | "avenir"
+  >;
+
+  /**
+   * Title field in *Bilan → Default → Primary → Bilan Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Titre du thème
+   * - **API ID Path**: bilan.default.primary.bilan_items[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Bilan → Default → Primary → Bilan Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Description courte du thème
+   * - **API ID Path**: bilan.default.primary.bilan_items[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Actions détaillées field in *Bilan → Default → Primary → Bilan Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Liste des actions réalisées
+   * - **API ID Path**: bilan.default.primary.bilan_items[].actions
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  actions: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Bilan → Default → Primary*
+ */
+export interface BilanSliceDefaultPrimary {
+  /**
+   * Section Title field in *Bilan → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Bilan du Mandat
+   * - **API ID Path**: bilan.default.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  section_title: prismic.RichTextField;
+
+  /**
+   * Section Description field in *Bilan → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Decouvrez les realisations de notre mandat
+   * - **API ID Path**: bilan.default.primary.section_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  section_description: prismic.RichTextField;
+
+  /**
+   * Bilan Items field in *Bilan → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bilan.default.primary.bilan_items[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  bilan_items: prismic.GroupField<
+    Simplify<BilanSliceDefaultPrimaryBilanItemsItem>
+  >;
+
+  /**
+   * CTA Text field in *Bilan → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: En savoir plus
+   * - **API ID Path**: bilan.default.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * CTA Link field in *Bilan → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: #contact
+   * - **API ID Path**: bilan.default.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_link: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Bilan Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BilanSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BilanSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Bilan*
+ */
+type BilanSliceVariation = BilanSliceDefault;
+
+/**
+ * Bilan Shared Slice
+ *
+ * - **API ID**: `bilan`
+ * - **Description**: Section bilan du mandat avec realisations et images
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type BilanSlice = prismic.SharedSlice<"bilan", BilanSliceVariation>;
 
 /**
  * Primary content in *Contact → Default → Primary*
@@ -563,6 +700,11 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      BilanSlice,
+      BilanSliceDefaultPrimaryBilanItemsItem,
+      BilanSliceDefaultPrimary,
+      BilanSliceVariation,
+      BilanSliceDefault,
       ContactSlice,
       ContactSliceDefaultPrimary,
       ContactSliceVariation,
