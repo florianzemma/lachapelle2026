@@ -7,6 +7,7 @@ const Navigation = () => {
 
   const menuItems = [
     { label: "Accueil", href: "#" },
+    { label: "Bilan", href: "#bilan" },
     { label: "Notre équipe", href: "#team" },
     { label: "Contact", href: "#contact" },
   ];

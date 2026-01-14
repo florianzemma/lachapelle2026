@@ -1,0 +1,101 @@
+{
+  "id": "bilan",
+  "type": "SharedSlice",
+  "name": "Bilan",
+  "description": "Section bilan du mandat avec realisations et images",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "Bilan du Mandat",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "section_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Description",
+            "placeholder": "Decouvrez les realisations de notre mandat",
+            "allowTargetBlank": true,
+            "single": "paragraph"
+          }
+        },
+        "bilan_items": {
+          "type": "Group",
+          "config": {
+            "label": "Bilan Items",
+            "fields": {
+              "icon": {
+                "type": "Select",
+                "config": {
+                  "label": "Icône",
+                  "placeholder": "Choisir une icône",
+                  "options": [
+                    "finances",
+                    "financement",
+                    "attractivite",
+                    "commerce",
+                    "social",
+                    "environnement",
+                    "vivre_ensemble",
+                    "avenir"
+                  ]
+                }
+              },
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "Titre du thème"
+                }
+              },
+              "description": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "Description courte du thème",
+                  "allowTargetBlank": true,
+                  "single": "paragraph"
+                }
+              },
+              "actions": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Actions détaillées",
+                  "placeholder": "Liste des actions réalisées",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,list-item"
+                }
+              }
+            }
+          }
+        },
+        "cta_text": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Text",
+            "placeholder": "En savoir plus"
+          }
+        },
+        "cta_link": {
+          "type": "Text",
+          "config": {
+            "label": "CTA Link",
+            "placeholder": "#contact"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
