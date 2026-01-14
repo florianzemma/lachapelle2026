@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --write .",
-    "prepare": "husky install",
+    "prepare": "husky",
     "slicemachine": "start-slicemachine"
   },
   "dependencies": {
@@ -21,6 +21,8 @@
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
     "@slicemachine/adapter-next": "^0.3.93",
     "@types/node": "^22.10.6",
     "@types/react": "^19.0.6",
