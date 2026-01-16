@@ -14,16 +14,34 @@ const Hero = ({ slice }: HeroProps) => {
       {/* Background image with overlay */}
       {slice.primary.background_image.url && (
         <>
-          <div className="absolute inset-0">
+          {/* Mobile image */}
+          {slice.primary.background_image_mobile.url ? (
+            <div className="absolute inset-0 sm:hidden">
+              <PrismicNextImage
+                field={slice.primary.background_image_mobile}
+                fill
+                className="h-full w-full object-cover object-center"
+                quality={90}
+                alt=""
+                priority
+              />
+            </div>
+          ) : null}
+
+          {/* Desktop image */}
+          <div
+            className={`absolute inset-0 ${slice.primary.background_image_mobile.url ? "hidden sm:block" : ""}`}
+          >
             <PrismicNextImage
               field={slice.primary.background_image}
               fill
-              className="object-cover h-full w-full"
-              quality={100}
+              className="h-full w-full object-cover object-center"
+              quality={90}
               alt=""
-              style={{ transform: "translateY(0px)", willChange: "transform" }}
+              priority
             />
           </div>
+
           {/* Dark overlay for better text contrast */}
           <div className="absolute inset-0 bg-black/40" />
         </>
@@ -44,7 +62,7 @@ const Hero = ({ slice }: HeroProps) => {
             <a
               href="#team"
               aria-label="Découvrir l'équipe de campagne"
-              className="bg-primary focus-visible:outline-primary rounded-lg px-6 py-3 text-base font-semibold text-white shadow-md transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-md transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               {slice.primary.cta_text}
             </a>
