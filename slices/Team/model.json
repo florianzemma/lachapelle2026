@@ -56,6 +56,20 @@
                   "placeholder": "Tête de liste, Adjoint, etc."
                 }
               },
+              "profession": {
+                "type": "Text",
+                "config": {
+                  "label": "Profession",
+                  "placeholder": "Agriculteur, Enseignant, etc."
+                }
+              },
+              "localite": {
+                "type": "Text",
+                "config": {
+                  "label": "Localité",
+                  "placeholder": "La Chapelle-du-Bard"
+                }
+              },
               "photo": {
                 "type": "Image",
                 "config": {

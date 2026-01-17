@@ -603,6 +603,26 @@ export interface TeamSliceDefaultPrimaryTeamMembersItem {
   role: prismic.KeyTextField;
 
   /**
+   * Profession field in *Team → Default → Primary → Team Members*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Agriculteur, Enseignant, etc.
+   * - **API ID Path**: team.default.primary.team_members[].profession
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  profession: prismic.KeyTextField;
+
+  /**
+   * Localité field in *Team → Default → Primary → Team Members*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: La Chapelle-du-Bard
+   * - **API ID Path**: team.default.primary.team_members[].localite
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  localite: prismic.KeyTextField;
+
+  /**
    * Photo field in *Team → Default → Primary → Team Members*
    *
    * - **Field Type**: Image
