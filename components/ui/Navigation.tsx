@@ -18,7 +18,7 @@ const Navigation = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <span>Chapelle de la Tour 2026</span>
+            <span>La Chapelle - Construire ensemble pour demain</span>
           </div>
 
           {/* Menu Desktop */}
