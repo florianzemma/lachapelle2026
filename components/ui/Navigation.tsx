@@ -17,7 +17,7 @@ const Navigation = () => {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="flex-shrink-0 text-sm md:text-xl">
+          <div className="flex-shrink-0 font-heading text-sm font-bold text-primary md:text-xl">
             <span>La Chapelle - Construire ensemble pour demain</span>
           </div>
 

@@ -30,6 +30,17 @@
             "single": "paragraph"
           }
         },
+        "group_photo": {
+          "type": "Image",
+          "config": {
+            "label": "Group Photo",
+            "constraint": {
+              "width": 2000,
+              "height": null
+            },
+            "thumbnails": []
+          }
+        },
         "team_members": {
           "type": "Group",
           "config": {
