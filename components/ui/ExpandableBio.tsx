@@ -4,37 +4,34 @@ import { useState, useRef, useEffect, ReactNode } from "react";
 
 interface ExpandableBioProps {
   children: ReactNode;
-  maxLines?: number;
 }
 
-export function ExpandableBio({ children, maxLines = 3 }: ExpandableBioProps) {
+export function ExpandableBio({ children }: ExpandableBioProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [needsTruncation, setNeedsTruncation] = useState(false);
+  const [showButton, setShowButton] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (contentRef.current) {
-      const lineHeight = parseInt(
-        getComputedStyle(contentRef.current).lineHeight
+      setShowButton(
+        contentRef.current.scrollHeight > contentRef.current.clientHeight
       );
-      const maxHeight = lineHeight * maxLines;
-      setNeedsTruncation(contentRef.current.scrollHeight > maxHeight + 4);
     }
-  }, [children, maxLines]);
+  }, []);
 
   return (
     <div className="mt-4">
       <div
         ref={contentRef}
-        className={`prismic-content overflow-hidden text-sm leading-relaxed text-muted transition-[max-height] duration-300 ease-out ${!isExpanded && needsTruncation ? "max-h-[4.5rem]" : "max-h-[500px]"} `}
+        className={`prismic-content text-sm leading-relaxed text-muted ${isExpanded ? "" : "line-clamp-3"}`}
       >
         {children}
       </div>
 
-      {needsTruncation && (
+      {showButton && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="mt-2 flex items-center gap-1 text-sm font-medium text-primary-light transition-colors hover:text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+          className="mt-2 flex items-center gap-1 text-sm font-medium text-primary transition-colors hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           aria-expanded={isExpanded}
         >
           {isExpanded ? (

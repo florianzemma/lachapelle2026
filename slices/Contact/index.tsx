@@ -40,11 +40,11 @@ const Contact = ({ slice }: ContactProps) => {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="prismic-content font-heading text-primary text-balance text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+          <div className="prismic-content text-balance font-heading text-2xl font-bold tracking-tight text-primary sm:text-3xl md:text-4xl">
             <PrismicRichText field={slice.primary.section_title} />
           </div>
           {slice.primary.section_description && (
-            <div className="prismic-content font-heading text-primary mt-4 text-base leading-7 sm:text-lg">
+            <div className="prismic-content mt-4 font-heading text-base leading-7 text-primary sm:text-lg">
               <PrismicRichText field={slice.primary.section_description} />
             </div>
           )}
@@ -52,29 +52,9 @@ const Contact = ({ slice }: ContactProps) => {
 
         <form
           onSubmit={handleSubmit}
-          className="mx-auto mt-16 max-w-xl sm:mt-20"
+          className="mx-auto mt-8 max-w-xl sm:mt-10"
         >
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-semibold leading-6 text-slate-900"
-              >
-                Nom complet
-              </label>
-              <div className="mt-2.5">
-                <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  required
-                  value={formState.name}
-                  onChange={handleChange}
-                  className="block w-full rounded-md border-0 px-3.5 py-2.5 text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
+          <div className="grid grid-cols-1 gap-y-6">
             <div>
               <label
                 htmlFor="email"
@@ -119,7 +99,7 @@ const Contact = ({ slice }: ContactProps) => {
           <div className="mt-10">
             <button
               type="submit"
-              className="bg-primary hover:bg-primary-light block w-full rounded-full px-8 py-3 text-center text-lg font-semibold text-white shadow-lg transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="block w-full rounded-full bg-primary px-8 py-3 text-center text-lg font-semibold text-white shadow-lg transition hover:bg-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               {slice.primary.submit_button_text || "Envoyer"}
             </button>
@@ -146,20 +126,9 @@ const Contact = ({ slice }: ContactProps) => {
                     Email :{" "}
                     <a
                       href={`mailto:${slice.primary.email}`}
-                      className="font-medium text-primary hover:text-primary-light"
+                      className="font-medium text-primary transition-opacity hover:opacity-80"
                     >
                       {slice.primary.email}
-                    </a>
-                  </p>
-                )}
-                {slice.primary.phone && (
-                  <p>
-                    Téléphone :{" "}
-                    <a
-                      href={`tel:${slice.primary.phone}`}
-                      className="text-primary font-medium hover:text-primary-light"
-                    >
-                      {slice.primary.phone}
                     </a>
                   </p>
                 )}

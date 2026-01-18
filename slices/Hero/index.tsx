@@ -40,9 +40,10 @@ const Hero = ({ slice }: HeroProps) => {
                   field={slice.primary.background_image_mobile}
                   fill
                   className="h-full w-full object-cover object-center"
-                  quality={90}
+                  quality={80}
                   alt=""
                   priority
+                  sizes="100vw"
                 />
               </div>
             ) : null}
@@ -55,9 +56,10 @@ const Hero = ({ slice }: HeroProps) => {
                 field={slice.primary.background_image}
                 fill
                 className="h-full w-full object-cover object-center"
-                quality={90}
+                quality={80}
                 alt=""
                 priority
+                sizes="(max-width: 768px) 100vw, 75vw"
               />
             </div>
 

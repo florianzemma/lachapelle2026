@@ -29,6 +29,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const showPreview = process.env.NEXT_PUBLIC_ENABLE_PREVIEW === "true";
+
   return (
     <html
       lang="fr"
@@ -38,7 +40,7 @@ export default function RootLayout({
         <Navigation />
         <div>{children}</div>
         <Footer />
-        <PrismicPreview repositoryName={repositoryName} />
+        {showPreview && <PrismicPreview repositoryName={repositoryName} />}
       </body>
     </html>
   );

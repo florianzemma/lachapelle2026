@@ -668,6 +668,16 @@ export interface TeamSliceDefaultPrimary {
   section_description: prismic.RichTextField;
 
   /**
+   * Group Photo field in *Team → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: team.default.primary.group_photo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  group_photo: prismic.ImageField<never>;
+
+  /**
    * Team Members field in *Team → Default → Primary*
    *
    * - **Field Type**: Group

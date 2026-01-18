@@ -55,7 +55,7 @@ function ActionsList({
             />
           </svg>
           <span>
-            {isOpen ? "Masquer" : "Voir"} les {count} actions
+            {isOpen ? "Masquer" : "Voir"} les {count} réalisations
           </span>
         </span>
 
@@ -178,7 +178,7 @@ const Bilan = ({ slice }: BilanProps) => {
                           d="M5 13l4 4L19 7"
                         />
                       </svg>
-                      {actionCount} actions
+                      {actionCount} réalisations
                     </span>
                   )}
                 </div>
