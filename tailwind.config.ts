@@ -24,6 +24,8 @@ const config: Config = {
           light: "var(--secondary-light)",
           dark: "var(--secondary-dark)",
         },
+        logoBlue: "var(--logo-blue)",
+        logoGreen: "var(--logo-green)",
         muted: "var(--muted)",
         border: "var(--border)",
       },

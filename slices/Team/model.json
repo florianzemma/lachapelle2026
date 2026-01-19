@@ -41,6 +41,15 @@
             "thumbnails": []
           }
         },
+        "team_intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Team Introduction",
+            "placeholder": "Texte d'introduction de la liste...",
+            "allowTargetBlank": true,
+            "multi": "paragraph, strong, em, hyperlink"
+          }
+        },
         "team_members": {
           "type": "Group",
           "config": {
