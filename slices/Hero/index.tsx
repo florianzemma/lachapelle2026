@@ -12,7 +12,7 @@ const Hero = ({ slice }: HeroProps) => {
       className="flex min-h-[500px] w-full flex-col md:min-h-[600px] md:flex-row"
     >
       {/* Logo section - Full width on mobile, 1/3 on tablet, 1/4 on desktop */}
-      <div className="mt-6 flex items-center justify-center bg-white px-6 py-8 md:w-1/3 md:py-0 lg:w-1/4">
+      <div className="md:order-0 order-1 mt-6 flex items-center justify-center bg-white px-6 md:w-1/3 md:py-0 lg:w-3/12">
         {slice.primary.logo?.url && (
           <PrismicNextImage
             field={slice.primary.logo}
@@ -22,7 +22,7 @@ const Hero = ({ slice }: HeroProps) => {
       </div>
 
       {/* Hero image with content - Full width on mobile, 2/3 on tablet, 3/4 on desktop */}
-      <div className="relative flex min-h-[400px] flex-1 items-center justify-center overflow-hidden md:min-h-0 md:w-2/3 lg:w-3/4">
+      <div className="order-0 relative mt-16 flex min-h-[400px] flex-1 items-center justify-center overflow-hidden md:order-1 md:min-h-0 md:w-2/3 lg:w-3/4">
         {/* Background image with overlay */}
         {slice.primary.background_image.url && (
           <>
@@ -40,7 +40,6 @@ const Hero = ({ slice }: HeroProps) => {
                 />
               </div>
             ) : null}
-
             {/* Desktop image */}
             <div
               className={`absolute inset-0 ${slice.primary.background_image_mobile.url ? "hidden sm:block" : ""}`}
@@ -55,9 +54,11 @@ const Hero = ({ slice }: HeroProps) => {
                 sizes="(max-width: 768px) 100vw, 75vw"
               />
             </div>
-
             {/* Dark overlay for better text contrast */}
             <div className="absolute inset-0 bg-black/40" />
+            {/* Gradient fade from logo section */}
+            <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-r from-white to-transparent" />{" "}
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-white to-transparent md:hidden" />
           </>
         )}
 

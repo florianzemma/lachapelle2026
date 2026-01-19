@@ -1,5 +1,6 @@
 import Footer from "@/components/ui/Footer";
 import Navigation from "@/components/ui/Navigation";
+import SmoothScroll from "@/components/ui/SmoothScroll";
 import { repositoryName } from "@/prismicio";
 import { PrismicPreview } from "@prismicio/next";
 import type { Metadata } from "next";
@@ -37,9 +38,11 @@ export default function RootLayout({
       className={`${libreFranklin.variable} ${fraunces.variable}`}
     >
       <body className={`${libreFranklin.variable} ${fraunces.variable}`}>
-        <Navigation />
-        <div>{children}</div>
-        <Footer />
+        <SmoothScroll>
+          <Navigation />
+          <div>{children}</div>
+          <Footer />
+        </SmoothScroll>
         {showPreview && <PrismicPreview repositoryName={repositoryName} />}
       </body>
     </html>

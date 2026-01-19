@@ -16,11 +16,6 @@ const Navigation = () => {
     <nav className="fixed top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <div className="flex-shrink-0 font-heading text-sm font-bold text-primary md:text-xl">
-            <span>La Chapelle - Construire ensemble pour demain</span>
-          </div>
-
           {/* Menu Desktop */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-1">

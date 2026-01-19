@@ -161,17 +161,43 @@ const Team = ({ slice }: TeamProps) => {
         </div>
 
         {slice.primary.group_photo?.url && (
-          <div className="mx-auto mt-12 max-w-5xl overflow-hidden rounded-2xl shadow-2xl">
-            <div className="relative aspect-[4/3] w-full bg-secondary sm:aspect-[3/2]">
-              <PrismicNextImage
-                field={slice.primary.group_photo}
-                fill
-                className="object-cover"
-                quality={80}
-                loading="lazy"
-                sizes="(max-width: 1280px) calc(100vw - 3rem), 1280px"
-              />
+          <div className="mx-auto mt-12 max-w-5xl">
+            <div className="overflow-hidden rounded-2xl shadow-2xl">
+              <div className="relative aspect-[4/3] w-full bg-secondary sm:aspect-[3/2]">
+                <PrismicNextImage
+                  field={slice.primary.group_photo}
+                  fill
+                  className="object-cover"
+                  quality={80}
+                  loading="lazy"
+                  sizes="(max-width: 1280px) calc(100vw - 3rem), 1280px"
+                />
+              </div>
             </div>
+
+            {slice.primary.team_intro && (
+              <div className="relative mx-auto mt-16 max-w-4xl px-4 sm:px-6">
+                {/* Decorative Quote Mark - Top Left */}
+                <div
+                  className="pointer-events-none absolute -left-4 -top-8 select-none font-serif text-8xl text-logoBlue sm:-left-8 sm:-top-12 sm:text-9xl"
+                  aria-hidden="true"
+                >
+                  &ldquo;
+                </div>
+
+                <div className="prismic-content relative text-sm italic leading-relaxed text-primary sm:text-xl sm:leading-[1.6]">
+                  <PrismicRichText field={slice.primary.team_intro} />
+                </div>
+
+                {/* Decorative Quote Mark - Bottom Right */}
+                <div
+                  className="pointer-events-none absolute -bottom-12 -right-4 select-none font-serif text-8xl text-logoBlue sm:-bottom-16 sm:-right-8 sm:text-9xl"
+                  aria-hidden="true"
+                >
+                  &rdquo;
+                </div>
+              </div>
+            )}
           </div>
         )}
 

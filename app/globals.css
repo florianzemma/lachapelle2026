@@ -14,12 +14,41 @@
   --secondary: rgb(231 221 202 / 0.4);
   --secondary-hover: #e7ddca80;
 
+  --logo-blue: #3b6188;
+  --logo-green: #7c9f6b;
+
   /* UI */
   --muted: #6b7280;
   --border: #e5e7eb;
 
   --font-inter: var(--font-inter);
   --font-heading: var(--font-space-grotesk);
+}
+
+html {
+  scroll-padding-top: 5rem;
+}
+
+/* Recommended Lenis CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 body {
