@@ -14,6 +14,8 @@
     --logo-green: #7c9f6b;
     --muted: #6b7280;
     --border: #e5e7eb;
+    --font-body: var(--font-libre-franklin);
+    --font-heading: var(--font-fraunces);
   }
 
   html {
@@ -22,7 +24,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-inter);
+    font-family: var(--font-body);
     font-feature-settings: "cv11", "ss01";
     font-variation-settings: "opsz" auto;
   }
@@ -153,10 +155,19 @@
       @apply mb-6;
     }
   }
-}
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: var(--font-body);
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  @layer utilities {
+    .text-balance {
+      text-wrap: balance;
+    }
   }
 }
