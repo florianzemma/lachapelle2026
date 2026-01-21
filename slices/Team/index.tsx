@@ -125,7 +125,9 @@ function TeamMemberCard({
 
         {member.bio && (
           <ExpandableBio>
-            <PrismicRichText field={member.bio} />
+            <div className="prismic-content prose prose-sm max-w-none">
+              <PrismicRichText field={member.bio} />
+            </div>
           </ExpandableBio>
         )}
       </div>
@@ -185,7 +187,7 @@ const Team = ({ slice }: TeamProps) => {
                   &ldquo;
                 </div>
 
-                <div className="prismic-content relative text-sm italic leading-relaxed text-primary sm:text-xl sm:leading-[1.6]">
+                <div className="prismic-content prose prose-lg relative max-w-none text-sm italic leading-relaxed text-primary sm:text-xl sm:leading-[1.6]">
                   <PrismicRichText field={slice.primary.team_intro} />
                 </div>
 

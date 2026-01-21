@@ -14,11 +14,11 @@ const Priorities = ({ slice }: PrioritiesProps) => {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-center">
-          <div className="prismic-content font-heading text-primary text-balance text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
+          <div className="prismic-content text-balance font-heading text-2xl font-bold tracking-tight text-primary sm:text-3xl md:text-4xl">
             <PrismicRichText field={slice.primary.section_title} />
           </div>
           {slice.primary.section_description && (
-            <div className="prismic-content font-heading text-primary mt-4 text-base leading-7 sm:text-lg">
+            <div className="prismic-content prose prose-lg mt-4 max-w-none font-heading text-base leading-7 text-primary sm:text-lg">
               <PrismicRichText field={slice.primary.section_description} />
             </div>
           )}
@@ -29,12 +29,12 @@ const Priorities = ({ slice }: PrioritiesProps) => {
           {slice.primary.priorities.map((priority, index) => (
             <div
               key={index}
-              className="group relative overflow-hidden rounded-xl border border-border bg-white p-6 shadow-sm transition hover:shadow-lg hover:border-primary-light"
+              className="group relative overflow-hidden rounded-xl border border-border bg-white p-6 shadow-sm transition hover:border-primary-light hover:shadow-lg"
             >
               {/* Icon */}
               {priority.icon && (
                 <div className="mb-4 flex items-center justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-4xl shadow-sm group-hover:scale-110 transition-transform">
+                  <div className="bg-primary/10 flex h-16 w-16 items-center justify-center rounded-full text-4xl shadow-sm transition-transform group-hover:scale-110">
                     {priority.icon}
                   </div>
                 </div>
@@ -47,13 +47,13 @@ const Priorities = ({ slice }: PrioritiesProps) => {
 
               {/* Priority Description */}
               {priority.description && (
-                <div className="prismic-content text-center text-sm leading-6 text-muted">
+                <div className="prismic-content prose prose-sm max-w-none text-center leading-6 text-muted">
                   <PrismicRichText field={priority.description} />
                 </div>
               )}
 
               {/* Decorative element */}
-              <div className="absolute -bottom-2 -right-2 h-24 w-24 rounded-full bg-secondary opacity-30 blur-2xl group-hover:opacity-50 transition-opacity" />
+              <div className="absolute -bottom-2 -right-2 h-24 w-24 rounded-full bg-secondary opacity-30 blur-2xl transition-opacity group-hover:opacity-50" />
             </div>
           ))}
         </div>
@@ -64,7 +64,7 @@ const Priorities = ({ slice }: PrioritiesProps) => {
             <a
               href="#contact"
               aria-label={slice.primary.cta_text || "En savoir plus"}
-              className="bg-primary focus-visible:outline-primary rounded-lg px-6 py-3 text-base font-semibold text-white shadow-md transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              className="rounded-lg bg-primary px-6 py-3 text-base font-semibold text-white shadow-md transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               {slice.primary.cta_text}
             </a>
