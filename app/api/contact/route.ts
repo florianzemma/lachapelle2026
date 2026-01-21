@@ -1,5 +1,5 @@
-import { Resend } from "resend";
 import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
 import { z } from "zod";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     await resend.emails.send({
-      from: "La Chapelle 2026 <onboarding@resend.dev>",
+      from: "La Chapelle 2026 <contact@lachapelledelatour2026.fr>",
       to: process.env.CONTACT_EMAIL,
       replyTo: email,
       subject: `Nouveau message de ${email}`,

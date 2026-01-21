@@ -2,7 +2,7 @@
 
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export type ContactProps = SliceComponentProps<Content.ContactSlice>;
 
@@ -281,29 +281,6 @@ const Contact = ({ slice }: ContactProps) => {
             </div>
           )}
         </form>
-
-        {(slice.primary.email || slice.primary.phone) && (
-          <div className="mt-16 border-t border-slate-200 pt-16">
-            <div className="mx-auto max-w-2xl text-center">
-              <h3 className="text-lg font-semibold text-primary">
-                Autres moyens de nous contacter
-              </h3>
-              <div className="mt-6 space-y-2 text-slate-700">
-                {slice.primary.email && (
-                  <p>
-                    Email :{" "}
-                    <a
-                      href={`mailto:${slice.primary.email}`}
-                      className="font-medium text-primary transition-opacity hover:opacity-80"
-                    >
-                      {slice.primary.email}
-                    </a>
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       <style jsx>{`
