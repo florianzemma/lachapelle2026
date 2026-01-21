@@ -10,7 +10,7 @@ import "./globals.css";
 export const libreFranklin = Libre_Franklin({
   subsets: ["latin"],
   weight: ["600", "700"],
-  variable: "--font-inter",
+  variable: "--font-libre-franklin",
 });
 
 export const fraunces = Fraunces({

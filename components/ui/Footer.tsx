@@ -13,7 +13,7 @@ const Footer = () => {
           </div>
           <div className="mt-4 flex justify-center space-x-6 md:mt-0">
             <a
-              href="mailto:contact@example.com"
+              href="mailto:contact@lachapelledelatour2026.fr"
               className="text-slate-500 transition hover:text-slate-700"
               aria-label="Nous contacter par email"
             >
