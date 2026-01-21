@@ -20,7 +20,10 @@ export const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
-  title: "Construire La Chapelle de la Tour ensemble pour demain",
+  icons: {
+    icon: "favicon.ico",
+  },
+  title: "La Chapelle - Construire ensemble pour demain",
   description:
     "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour",
 };

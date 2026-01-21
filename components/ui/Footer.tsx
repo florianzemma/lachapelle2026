@@ -7,8 +7,8 @@ const Footer = () => {
         <div className="md:flex md:items-center md:justify-between">
           <div className="text-center md:text-left">
             <p className="text-sm text-slate-600">
-              &copy; {currentYear} La Chapelle - Ensemble pour demain. Tous
-              droits réservés.
+              &copy; {currentYear} La Chapelle - Ensemble pour demain - FZG Tech
+              Studio. Tous droits réservés.
             </p>
           </div>
           <div className="mt-4 flex justify-center space-x-6 md:mt-0">
