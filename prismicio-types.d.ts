@@ -142,6 +142,51 @@ export type HomepageDocument<Lang extends string = string> =
 export type AllDocumentTypes = HomepageDocument;
 
 /**
+ * Item in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+ */
+export interface BilanSliceDefaultPrimaryBilanItemsActionDetailsItem {
+  /**
+   * Titre de l'action field in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Ex: Rénovation de la place du village
+   * - **API ID Path**: bilan.default.primary.bilan_items[].action_details[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description de l'action field in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Description
+   * - **API ID Path**: bilan.default.primary.bilan_items[].action_details[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Photo de l'action field in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bilan.default.primary.bilan_items[].action_details[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * text field in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Texte
+   * - **API ID Path**: bilan.default.primary.bilan_items[].action_details[].text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+}
+
+/**
  * Item in *Bilan → Default → Primary → Bilan Items*
  */
 export interface BilanSliceDefaultPrimaryBilanItemsItem {
@@ -154,14 +199,12 @@ export interface BilanSliceDefaultPrimaryBilanItemsItem {
    * - **Documentation**: https://prismic.io/docs/fields/select
    */
   icon: prismic.SelectField<
-    | "finances"
-    | "financement"
-    | "attractivite"
-    | "commerce"
-    | "social"
-    | "environnement"
-    | "vivre_ensemble"
-    | "avenir"
+    | "enfance_jeunesse_seniors"
+    | "environnement_cadre_vie"
+    | "soutien_economique_patrimoine"
+    | "solidarite_social_vie_pratique"
+    | "securite_prevention"
+    | "sport_associations"
   >;
 
   /**
@@ -185,7 +228,7 @@ export interface BilanSliceDefaultPrimaryBilanItemsItem {
   description: prismic.RichTextField;
 
   /**
-   * Actions détaillées field in *Bilan → Default → Primary → Bilan Items*
+   * Actions (ancien format - optionnel) field in *Bilan → Default → Primary → Bilan Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Liste des actions réalisées
@@ -193,6 +236,28 @@ export interface BilanSliceDefaultPrimaryBilanItemsItem {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   actions: prismic.RichTextField;
+
+  /**
+   * Actions avec photos field in *Bilan → Default → Primary → Bilan Items*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bilan.default.primary.bilan_items[].action_details[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  action_details: prismic.NestedGroupField<
+    Simplify<BilanSliceDefaultPrimaryBilanItemsActionDetailsItem>
+  >;
+
+  /**
+   * Photo de thématique field in *Bilan → Default → Primary → Bilan Items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bilan.default.primary.bilan_items[].thematic_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  thematic_image: prismic.ImageField<never>;
 }
 
 /**
@@ -218,6 +283,16 @@ export interface BilanSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   section_description: prismic.RichTextField;
+
+  /**
+   * Texte d'introduction field in *Bilan → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Texte d'introduction avant les thématiques...
+   * - **API ID Path**: bilan.default.primary.introduction_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  introduction_text: prismic.RichTextField;
 
   /**
    * Bilan Items field in *Bilan → Default → Primary*
@@ -753,6 +828,7 @@ declare module "@prismicio/client" {
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
       BilanSlice,
+      BilanSliceDefaultPrimaryBilanItemsActionDetailsItem,
       BilanSliceDefaultPrimaryBilanItemsItem,
       BilanSliceDefaultPrimary,
       BilanSliceVariation,

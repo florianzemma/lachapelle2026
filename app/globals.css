@@ -2,95 +2,161 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #fafaf8;
-  --foreground: #2f2f2f;
+@layer base {
+  :root {
+    --background: #fafaf8;
+    --foreground: #2f2f2f;
+    --primary: rgb(28 61 44);
+    --primary-light: #6fa98a;
+    --secondary: rgb(231 221 202 / 0.4);
+    --secondary-hover: #e7ddca80;
+    --logo-blue: #3b6188;
+    --logo-green: #7c9f6b;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+  }
 
-  /* Vert nature – campagne iséroise */
-  --primary: rgb(28 61 44);
-  --primary-light: #6fa98a;
+  html {
+    scroll-padding-top: 5rem;
+  }
 
-  /* Or / pisé dauphinois */
-  --secondary: rgb(231 221 202 / 0.4);
-  --secondary-hover: #e7ddca80;
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-inter);
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" auto;
+  }
 
-  --logo-blue: #3b6188;
-  --logo-green: #7c9f6b;
+  /* Lenis smooth scroll */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
 
-  /* UI */
-  --muted: #6b7280;
-  --border: #e5e7eb;
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
 
-  --font-inter: var(--font-inter);
-  --font-heading: var(--font-space-grotesk);
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
 }
 
-html {
-  scroll-padding-top: 5rem;
-}
+@layer components {
+  /* Prismic content normalization */
+  .prismic-content > *:first-child {
+    @apply mt-0;
+  }
 
-/* Recommended Lenis CSS */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
+  .prismic-content > *:last-child {
+    @apply mb-0;
+  }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
+  .prismic-content p {
+    @apply m-0;
+  }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
+  .prismic-content ul {
+    @apply mb-4 ml-6 mt-4 list-disc;
+  }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
+  .prismic-content ol {
+    @apply mb-4 ml-6 mt-4 list-decimal;
+  }
 
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
+  .prismic-content li {
+    @apply mb-2;
+  }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: var(--font-inter);
-  font-feature-settings: "cv11", "ss01";
-  font-variation-settings: "opsz" auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Bilan cards specific - Compact prose */
+  .prismic-content.prose-sm ul,
+  .prismic-content.prose-sm ol {
+    @apply mb-0 ml-0 mt-3 pl-5;
+  }
+
+  .prismic-content.prose-sm li {
+    @apply mb-1.5 pl-1 leading-normal;
+  }
+
+  .prismic-content.prose-sm li:last-child {
+    @apply mb-0;
+  }
+
+  .prismic-content.prose-sm p + ul,
+  .prismic-content.prose-sm p + ol {
+    @apply mt-2;
+  }
+
+  /* Hero section styles */
+  .hero-title * {
+    @apply text-balance font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  .hero-description * {
+    @apply mt-6 text-balance text-lg leading-7 text-white sm:text-xl md:text-2xl;
+  }
+
+  /* Masonry grid layout - Cannot be done with Tailwind alone */
+  .bilan-masonry-grid {
+    display: grid;
+    grid-auto-rows: 20px;
+    align-items: start;
+    @apply gap-6;
+  }
+
+  @media (min-width: 640px) {
+    .bilan-masonry-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .bilan-masonry-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .bilan-masonry-item {
+    grid-row-end: span var(--row-span);
+  }
+
+  /* Fallback: CSS columns for older browsers */
+  @supports not (display: grid) {
+    .bilan-masonry-grid {
+      @apply gap-0;
+      column-count: 1;
+      column-gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .bilan-masonry-grid {
+        column-count: 2;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .bilan-masonry-grid {
+        column-count: 3;
+      }
+    }
+
+    .bilan-masonry-item {
+      break-inside: avoid;
+      @apply mb-6;
+    }
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
-
-/* Fix pour PrismicRichText - enlever les marges par défaut */
-.prismic-content > *:first-child {
-  margin-top: 0;
-}
-
-.prismic-content > *:last-child {
-  margin-bottom: 0;
-}
-
-.prismic-content p {
-  margin: 0;
-}
-
-/* Hero title styles - Applied to PrismicRichText children */
-.hero-title * {
-  @apply font-bold tracking-tight text-white;
-  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
-  text-wrap: balance;
-}
-
-/* Hero description styles - Applied to PrismicRichText children */
-.hero-description * {
-  @apply leading-7 text-white;
-  @apply text-lg sm:text-xl md:text-2xl;
-  @apply mt-6;
-  text-wrap: balance;
 }

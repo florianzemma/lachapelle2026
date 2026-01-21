@@ -30,6 +30,15 @@
             "single": "paragraph"
           }
         },
+        "introduction_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Texte d'introduction",
+            "placeholder": "Texte d'introduction avant les thématiques...",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,preformatted"
+          }
+        },
         "bilan_items": {
           "type": "Group",
           "config": {
@@ -41,14 +50,12 @@
                   "label": "Icône",
                   "placeholder": "Choisir une icône",
                   "options": [
-                    "finances",
-                    "financement",
-                    "attractivite",
-                    "commerce",
-                    "social",
-                    "environnement",
-                    "vivre_ensemble",
-                    "avenir"
+                    "enfance_jeunesse_seniors",
+                    "environnement_cadre_vie",
+                    "soutien_economique_patrimoine",
+                    "solidarite_social_vie_pratique",
+                    "securite_prevention",
+                    "sport_associations"
                   ]
                 }
               },
@@ -71,10 +78,63 @@
               "actions": {
                 "type": "StructuredText",
                 "config": {
-                  "label": "Actions détaillées",
+                  "label": "Actions (ancien format - optionnel)",
                   "placeholder": "Liste des actions réalisées",
                   "allowTargetBlank": true,
-                  "multi": "paragraph,list-item"
+                  "multi": "paragraph,strong,em,hyperlink,list-item,o-list-item"
+                }
+              },
+              "action_details": {
+                "type": "Group",
+                "config": {
+                  "label": "Actions avec photos",
+                  "fields": {
+                    "title": {
+                      "type": "Text",
+                      "config": {
+                        "label": "Titre de l'action",
+                        "placeholder": "Ex: Rénovation de la place du village"
+                      }
+                    },
+                    "description": {
+                      "type": "StructuredText",
+                      "config": {
+                        "label": "Description de l'action",
+                        "placeholder": "Description",
+                        "allowTargetBlank": true,
+                        "multi": "paragraph,strong,list-item,hyperlink"
+                      }
+                    },
+                    "image": {
+                      "type": "Image",
+                      "config": {
+                        "label": "Photo de l'action",
+                        "constraint": {
+                          "width": 800
+                        },
+                        "thumbnails": []
+                      }
+                    },
+                    "text": {
+                      "type": "StructuredText",
+                      "config": {
+                        "label": "text",
+                        "placeholder": "Texte",
+                        "allowTargetBlank": true,
+                        "multi": "strong,em,hyperlink,list-item,paragraph"
+                      }
+                    }
+                  }
+                }
+              },
+              "thematic_image": {
+                "type": "Image",
+                "config": {
+                  "label": "Photo de thématique",
+                  "constraint": {
+                    "width": 1200
+                  },
+                  "thumbnails": []
                 }
               }
             }
