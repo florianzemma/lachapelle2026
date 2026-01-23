@@ -10,7 +10,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { bilanIcons, defaultIcon } from "./icons";
 
-export type BilanProps = SliceComponentProps<Content.BilanSlice>;
+export type SummaryProps = SliceComponentProps<Content.BilanSlice>;
 
 function ThematicCard({
   item,
@@ -248,10 +248,10 @@ function ThematicCard({
   );
 }
 
-const Bilan = ({ slice }: BilanProps) => {
-  return (
+const Summary = ({ slice }: SummaryProps) => {
+  return process.env.NEXT_PUBLIC_HIDE_SUMMARY === "true" ? null : (
     <section
-      id="bilan"
+      id="summary"
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="relative overflow-hidden py-20 sm:py-24 lg:py-32"
@@ -351,4 +351,4 @@ const Bilan = ({ slice }: BilanProps) => {
   );
 };
 
-export default Bilan;
+export default Summary;

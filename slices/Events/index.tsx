@@ -84,7 +84,7 @@ const Events = ({ slice }: EventsProps) => {
               )}
               {hasCta && (
                 <a
-                  href={slice.primary.cta_link}
+                  href={slice.primary.cta_link || "#"}
                   className="mt-6 inline-block rounded-full bg-primary px-8 py-3 font-heading font-semibold text-white transition-all hover:scale-105 hover:shadow-lg"
                 >
                   {slice.primary.cta_text}

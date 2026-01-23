@@ -28,7 +28,8 @@ type PickContentRelationshipFieldData<
       TSubRelationship["customtypes"],
       TLang
     >;
-  } & { // Group
+  } & {
+    // Group
     [TGroup in Extract<
       TRelationship["fields"][number],
       | prismic.CustomTypeModelFetchGroupLevel1
@@ -40,7 +41,8 @@ type PickContentRelationshipFieldData<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
-  } & { // Other fields
+  } & {
+    // Other fields
     [TFieldKey in Extract<
       TRelationship["fields"][number],
       string
@@ -141,11 +143,11 @@ export type HomepageDocument<Lang extends string = string> =
 export type AllDocumentTypes = HomepageDocument;
 
 /**
- * Item in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+ * Item in *Summary → Default → Primary → Bilan Items → Actions avec photos*
  */
 export interface BilanSliceDefaultPrimaryBilanItemsActionDetailsItem {
   /**
-   * Titre de l'action field in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+   * Titre de l'action field in *Summary → Default → Primary → Bilan Items → Actions avec photos*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Ex: Rénovation de la place du village
@@ -155,7 +157,7 @@ export interface BilanSliceDefaultPrimaryBilanItemsActionDetailsItem {
   title: prismic.KeyTextField;
 
   /**
-   * Description de l'action field in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+   * Description de l'action field in *Summary → Default → Primary → Bilan Items → Actions avec photos*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Description
@@ -165,7 +167,7 @@ export interface BilanSliceDefaultPrimaryBilanItemsActionDetailsItem {
   description: prismic.RichTextField;
 
   /**
-   * Photo de l'action field in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+   * Photo de l'action field in *Summary → Default → Primary → Bilan Items → Actions avec photos*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -175,7 +177,7 @@ export interface BilanSliceDefaultPrimaryBilanItemsActionDetailsItem {
   image: prismic.ImageField<never>;
 
   /**
-   * text field in *Bilan → Default → Primary → Bilan Items → Actions avec photos*
+   * text field in *Summary → Default → Primary → Bilan Items → Actions avec photos*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Texte
@@ -186,11 +188,11 @@ export interface BilanSliceDefaultPrimaryBilanItemsActionDetailsItem {
 }
 
 /**
- * Item in *Bilan → Default → Primary → Bilan Items*
+ * Item in *Summary → Default → Primary → Bilan Items*
  */
 export interface BilanSliceDefaultPrimaryBilanItemsItem {
   /**
-   * Icône field in *Bilan → Default → Primary → Bilan Items*
+   * Icône field in *Summary → Default → Primary → Bilan Items*
    *
    * - **Field Type**: Select
    * - **Placeholder**: Choisir une icône
@@ -207,7 +209,7 @@ export interface BilanSliceDefaultPrimaryBilanItemsItem {
   >;
 
   /**
-   * Title field in *Bilan → Default → Primary → Bilan Items*
+   * Title field in *Summary → Default → Primary → Bilan Items*
    *
    * - **Field Type**: Text
    * - **Placeholder**: Titre du thème
@@ -217,7 +219,7 @@ export interface BilanSliceDefaultPrimaryBilanItemsItem {
   title: prismic.KeyTextField;
 
   /**
-   * Description field in *Bilan → Default → Primary → Bilan Items*
+   * Description field in *Summary → Default → Primary → Bilan Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Description courte du thème
@@ -227,7 +229,7 @@ export interface BilanSliceDefaultPrimaryBilanItemsItem {
   description: prismic.RichTextField;
 
   /**
-   * Actions (ancien format - optionnel) field in *Bilan → Default → Primary → Bilan Items*
+   * Actions (ancien format - optionnel) field in *Summary → Default → Primary → Bilan Items*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Liste des actions réalisées
@@ -237,7 +239,7 @@ export interface BilanSliceDefaultPrimaryBilanItemsItem {
   actions: prismic.RichTextField;
 
   /**
-   * Actions avec photos field in *Bilan → Default → Primary → Bilan Items*
+   * Actions avec photos field in *Summary → Default → Primary → Bilan Items*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
@@ -249,7 +251,7 @@ export interface BilanSliceDefaultPrimaryBilanItemsItem {
   >;
 
   /**
-   * Photo de thématique field in *Bilan → Default → Primary → Bilan Items*
+   * Photo de thématique field in *Summary → Default → Primary → Bilan Items*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -260,11 +262,11 @@ export interface BilanSliceDefaultPrimaryBilanItemsItem {
 }
 
 /**
- * Primary content in *Bilan → Default → Primary*
+ * Primary content in *Summary → Default → Primary*
  */
 export interface BilanSliceDefaultPrimary {
   /**
-   * Section Title field in *Bilan → Default → Primary*
+   * Section Title field in *Summary → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Bilan du Mandat
@@ -274,7 +276,7 @@ export interface BilanSliceDefaultPrimary {
   section_title: prismic.RichTextField;
 
   /**
-   * Section Description field in *Bilan → Default → Primary*
+   * Section Description field in *Summary → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Decouvrez les realisations de notre mandat
@@ -284,7 +286,7 @@ export interface BilanSliceDefaultPrimary {
   section_description: prismic.RichTextField;
 
   /**
-   * Texte d'introduction field in *Bilan → Default → Primary*
+   * Texte d'introduction field in *Summary → Default → Primary*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: Texte d'introduction avant les thématiques...
@@ -294,7 +296,7 @@ export interface BilanSliceDefaultPrimary {
   introduction_text: prismic.RichTextField;
 
   /**
-   * Bilan Items field in *Bilan → Default → Primary*
+   * Bilan Items field in *Summary → Default → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
@@ -306,7 +308,7 @@ export interface BilanSliceDefaultPrimary {
   >;
 
   /**
-   * CTA Text field in *Bilan → Default → Primary*
+   * CTA Text field in *Summary → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: En savoir plus
@@ -316,7 +318,7 @@ export interface BilanSliceDefaultPrimary {
   cta_text: prismic.KeyTextField;
 
   /**
-   * CTA Link field in *Bilan → Default → Primary*
+   * CTA Link field in *Summary → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: #contact
@@ -327,7 +329,7 @@ export interface BilanSliceDefaultPrimary {
 }
 
 /**
- * Default variation for Bilan Slice
+ * Default variation for Summary Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -340,12 +342,12 @@ export type BilanSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *Bilan*
+ * Slice variation for *Summary*
  */
 type BilanSliceVariation = BilanSliceDefault;
 
 /**
- * Bilan Shared Slice
+ * Summary Shared Slice
  *
  * - **API ID**: `bilan`
  * - **Description**: Section bilan du mandat avec realisations et images
