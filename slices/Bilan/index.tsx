@@ -78,7 +78,7 @@ function ThematicCard({
       className={`group relative transition-all duration-700 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
       }`}
-      style={{ transitionDelay: `${index * 60}ms` }}
+      style={{ transitionDelay: `${index * 40}ms` }}
     >
       <div className="relative overflow-hidden rounded-3xl bg-white shadow-md transition-shadow duration-500 hover:shadow-2xl">
         {/* Numéro de chapitre décoratif en arrière-plan */}

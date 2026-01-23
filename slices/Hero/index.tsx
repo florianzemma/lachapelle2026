@@ -9,7 +9,7 @@ const Hero = ({ slice }: HeroProps) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="flex min-h-[500px] w-full flex-col md:min-h-[600px] md:flex-row"
+      className="flex min-h-[400px] w-full flex-col md:min-h-[600px] md:flex-row"
     >
       {/* Logo section - Full width on mobile, 1/3 on tablet, 1/4 on desktop */}
       <div className="md:order-0 order-1 mt-6 flex items-center justify-center bg-white px-6 md:w-1/3 md:py-0 lg:w-3/12">
@@ -22,7 +22,7 @@ const Hero = ({ slice }: HeroProps) => {
       </div>
 
       {/* Hero image with content - Full width on mobile, 2/3 on tablet, 3/4 on desktop */}
-      <div className="order-0 relative mt-16 flex min-h-screen flex-1 items-center justify-center overflow-hidden md:order-1 md:h-auto md:min-h-[600px] md:w-2/3 lg:w-3/4">
+      <div className="order-0 relative mt-16 flex min-h-[400px] flex-1 items-center justify-center overflow-hidden md:order-1 md:h-auto md:min-h-[600px] md:w-2/3 lg:w-3/4">
         {/* Background image with overlay */}
         {slice.primary.background_image.url && (
           <>
