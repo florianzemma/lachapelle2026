@@ -22,7 +22,7 @@ const Hero = ({ slice }: HeroProps) => {
       </div>
 
       {/* Hero image with content - Full width on mobile, 2/3 on tablet, 3/4 on desktop */}
-      <div className="order-0 relative mt-16 flex min-h-[400px] flex-1 items-center justify-center overflow-hidden md:order-1 md:min-h-0 md:w-2/3 lg:w-3/4">
+      <div className="order-0 relative mt-16 flex min-h-screen flex-1 items-center justify-center overflow-hidden md:order-1 md:h-auto md:min-h-[600px] md:w-2/3 lg:w-3/4">
         {/* Background image with overlay */}
         {slice.primary.background_image.url && (
           <>
@@ -35,7 +35,6 @@ const Hero = ({ slice }: HeroProps) => {
                   className="h-full w-full object-cover object-center"
                   quality={80}
                   alt=""
-                  priority
                   sizes="100vw"
                 />
               </div>
@@ -50,7 +49,6 @@ const Hero = ({ slice }: HeroProps) => {
                 className="h-full w-full object-cover object-center"
                 quality={80}
                 alt=""
-                priority
                 sizes="(max-width: 768px) 100vw, 75vw"
               />
             </div>
@@ -60,6 +58,18 @@ const Hero = ({ slice }: HeroProps) => {
             <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-r from-white to-transparent" />{" "}
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-b from-white to-transparent md:hidden" />
           </>
+        )}
+
+        {/* Floating logo badge - Mobile only */}
+        {slice.primary.logo?.url && (
+          <div className="absolute left-4 top-4 z-20 md:hidden">
+            <div className="rounded-lg bg-white/95 p-2 shadow-lg ring-1 ring-black/5 backdrop-blur-sm">
+              <PrismicNextImage
+                field={slice.primary.logo}
+                className="h-12 w-auto object-contain"
+              />
+            </div>
+          </div>
         )}
 
         {/* Content */}
