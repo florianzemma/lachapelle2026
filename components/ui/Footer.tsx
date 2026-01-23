@@ -6,6 +6,7 @@ const Footer = () => {
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="md:flex md:items-center md:justify-between">
           <div className="text-center md:text-left">
+            <p>Fait avec ❤️ à la Chapelle la Tour</p>
             <p className="text-sm text-slate-600">
               &copy; {currentYear} La Chapelle - Ensemble pour demain - FZG Tech
               Studio. Tous droits réservés.

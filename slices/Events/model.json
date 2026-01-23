@@ -1,0 +1,67 @@
+{
+  "id": "events",
+  "type": "SharedSlice",
+  "name": "Events",
+  "description": "Section actualités avec image et texte optionnel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Titre de section",
+            "placeholder": "Actualités",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "event_image": {
+          "type": "Image",
+          "config": {
+            "label": "Image de l'événement",
+            "constraint": { "width": 1200 },
+            "thumbnails": []
+          }
+        },
+        "event_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Titre (optionnel)",
+            "placeholder": "Réunion Publique",
+            "allowTargetBlank": true,
+            "single": "heading3"
+          }
+        },
+        "event_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description (optionnel)",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "cta_text": {
+          "type": "Text",
+          "config": {
+            "label": "Texte du bouton (optionnel)",
+            "placeholder": "En savoir plus"
+          }
+        },
+        "cta_link": {
+          "type": "Text",
+          "config": {
+            "label": "Lien du bouton (optionnel)",
+            "placeholder": "https://..."
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

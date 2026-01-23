@@ -10,6 +10,7 @@ const Navigation = () => {
     { label: "Bilan", href: "#bilan" },
     { label: "Notre équipe", href: "#team" },
     { label: "Contact", href: "#contact" },
+    { label: "Événements", href: "#events" },
   ];
 
   return (
