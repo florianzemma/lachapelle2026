@@ -1,7 +1,7 @@
 {
   "id": "bilan",
   "type": "SharedSlice",
-  "name": "Bilan",
+  "name": "Summary",
   "description": "Section bilan du mandat avec realisations et images",
   "variations": [
     {
