@@ -94,36 +94,20 @@ export default function RootLayout({
       {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
+
         name: "Liste électorale La Chapelle - Construire Ensemble pour Demain",
         url: SITE_URL,
+
         description:
           "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour",
         areaServed: {
           "@type": "City",
           name: "La Chapelle de la Tour",
+          "@postalCode": "38110",
           containedIn: {
             "@type": "AdministrativeArea",
             name: "Isère",
           },
-        },
-      },
-      {
-        "@type": "LocalBusiness",
-        "@id": `${SITE_URL}/#localbusiness`,
-
-        name: "La Chapelle - Construire Ensemble pour Demain",
-        description:
-          "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "La Chapelle de la Tour",
-          addressRegion: "Isère",
-          addressCountry: "FR",
-        },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: "45.4667",
-          longitude: "5.7167",
         },
       },
       {
