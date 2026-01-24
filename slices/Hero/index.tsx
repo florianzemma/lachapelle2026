@@ -60,18 +60,6 @@ const Hero = ({ slice }: HeroProps) => {
           </>
         )}
 
-        {/* Floating logo badge - Mobile only */}
-        {slice.primary.logo?.url && (
-          <div className="absolute left-4 top-4 z-20 md:hidden">
-            <div className="rounded-lg bg-white/95 p-2 shadow-lg ring-1 ring-black/5 backdrop-blur-sm">
-              <PrismicNextImage
-                field={slice.primary.logo}
-                className="h-12 w-auto object-contain"
-              />
-            </div>
-          </div>
-        )}
-
         {/* Content */}
         <div className="relative z-10 mx-auto max-w-4xl px-6 py-12 text-center md:py-0 lg:px-8">
           <div className="prismic-content hero-title font-heading">
