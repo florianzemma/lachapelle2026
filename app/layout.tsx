@@ -23,47 +23,44 @@ export const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-
-  title: "La Chapelle de la Tour 2026 - Élections Municipales",
+  title:
+    "La Chapelle - Construire Ensemble pour Demain - Élections Municipales 2026",
   description:
     "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour, Isère. Découvrez notre équipe, nos priorités et notre vision pour notre commune.",
-
   keywords: [
     "la chapelle de la tour 2026",
+    "la chapelle construire ensemble pour demain",
+    "la chapelle 2026",
+    "la chapelle de la tour",
     "elections",
     "élections municipales",
     "La Chapelle de la Tour",
     "Isère",
-    "élections 2026",
     "municipales 2026",
     "liste électorale",
   ],
-
-  authors: [{ name: "Liste La Chapelle de la Tour 2026" }],
-
+  authors: [{ name: "La Chapelle - Construire Ensemble pour Demain" }],
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
   },
-
   openGraph: {
     type: "website",
     locale: "fr_FR",
     url: SITE_URL,
-
-    siteName: "La Chapelle de la Tour 2026",
-    title: "La Chapelle de la Tour 2026 - Élections Municipales",
+    siteName: "La Chapelle - Construire Ensemble pour Demain",
+    title:
+      "La Chapelle - Construire Ensemble pour Demain - Élections Municipales 2026",
     description:
       "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour, Isère. Découvrez notre équipe, nos priorités et notre vision pour notre commune.",
   },
-
   twitter: {
     card: "summary_large_image",
-    title: "La Chapelle de la Tour 2026 - Élections Municipales",
+    title:
+      "La Chapelle - Construire Ensemble pour Demain - Élections Municipales 2026",
     description:
       "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour, Isère.",
   },
-
   robots: {
     index: true,
     follow: true,
@@ -75,7 +72,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-
   alternates: {
     canonical: SITE_URL,
   },
@@ -94,12 +90,11 @@ export default function RootLayout({
       {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
-
-        name: "Liste électorale La Chapelle - Construire Ensemble pour Demain",
+        name: "La Chapelle - Construire Ensemble pour Demain",
         url: SITE_URL,
-
         description:
           "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour",
+        sameAs: ["https://www.facebook.com/profile.php?id=61587248212379"],
         areaServed: {
           "@type": "City",
           name: "La Chapelle de la Tour",
@@ -113,9 +108,7 @@ export default function RootLayout({
       {
         "@type": "WebSite",
         "@id": `${SITE_URL}/#website`,
-
         url: SITE_URL,
-
         name: "La Chapelle - Construire Ensemble pour Demain",
         description:
           "Site officiel de la liste électorale La Chapelle - Construire ensemble pour demain pour les élections municipales 2026",
@@ -124,7 +117,6 @@ export default function RootLayout({
       {
         "@type": "BreadcrumbList",
         "@id": `${SITE_URL}/#breadcrumb`,
-
         itemListElement: [
           {
             "@type": "ListItem",
