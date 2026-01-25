@@ -1,8 +1,25 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
 
-export async function POST() {
-  revalidateTag("prismic", "max");
+export async function POST(request: NextRequest) {
+  const authHeader = request.headers.get("authorization");
+  const webhookSecret = process.env.PRISMIC_WEBHOOK_SECRET;
 
-  return NextResponse.json({ revalidated: true, now: Date.now() });
+  if (!webhookSecret) {
+    return NextResponse.json(
+      { error: "Webhook not configured" },
+      { status: 500 }
+    );
+  }
+
+  if (authHeader !== `Bearer ${webhookSecret}`) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  revalidateTag("prismic");
+
+  return NextResponse.json({
+    revalidated: true,
+    now: Date.now(),
+  });
 }
