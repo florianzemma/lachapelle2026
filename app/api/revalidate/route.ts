@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  revalidateTag("prismic");
+  revalidateTag("prismic", "default");
 
   return NextResponse.json({
     revalidated: true,
