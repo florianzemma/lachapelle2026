@@ -40,12 +40,61 @@ npm install
 3. **Configurer les variables d'environnement**
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-Éditer `.env.local` et remplacer `chapelle-tour-2026` par le nom de votre repository Prismic si différent.
+Éditer `.env` avec les valeurs suivantes :
 
-4. **Lancer le serveur de développement**
+```bash
+# Prismic
+NEXT_PUBLIC_PRISMIC_ENVIRONMENT=chapelle-tour-2026  # Nom de votre repository Prismic
+
+# Webhook Prismic (sécurité)
+# Générer avec : openssl rand -base64 32
+PRISMIC_WEBHOOK_SECRET=your_webhook_secret_here
+
+# Resend (envoi d'emails)
+# Obtenir sur : https://resend.com/api-keys
+RESEND_API_KEY=your_resend_api_key_here
+
+# Email de destination pour le formulaire de contact
+CONTACT_EMAIL=contact@lachapelledelatour2026.fr
+
+# URL de votre site (pour protection CSRF)
+NEXT_PUBLIC_SITE_URL=https://lachapelledelatour2026.fr
+```
+
+**Générer le secret webhook :**
+
+```bash
+openssl rand -base64 32
+```
+
+Copier le résultat dans `PRISMIC_WEBHOOK_SECRET`.
+
+4. **Configurer Resend (envoi d'emails)**
+
+- Créer un compte sur [resend.com](https://resend.com)
+- Aller dans **API Keys** et créer une nouvelle clé
+- Copier la clé dans `RESEND_API_KEY` de votre `.env`
+- Vérifier votre domaine d'envoi (ou utiliser le domaine de test)
+
+5. **Configurer le webhook Prismic** (pour le cache)
+
+Une fois déployé sur Vercel :
+
+- Aller dans Prismic → **Settings → Webhooks**
+- Cliquer sur **Create a webhook**
+- **Name**: "Cache Revalidation"
+- **URL**: `https://votre-domaine.fr/api/revalidate`
+- **Secret**: Copier votre `PRISMIC_WEBHOOK_SECRET`
+- Ajouter le header personnalisé :
+  - **Name**: `Authorization`
+  - **Value**: `Bearer VOTRE_PRISMIC_WEBHOOK_SECRET`
+- **Triggers**: Cocher "A document is published" et "A document is unpublished"
+- Sauvegarder
+
+6. **Lancer le serveur de développement**
 
 ```bash
 npm run dev
@@ -123,7 +172,16 @@ vercel
 
 Dans les **Project Settings → Environment Variables**, ajouter :
 
-- `NEXT_PUBLIC_PRISMIC_ENVIRONMENT` = `chapelle-tour-2026` (ou votre nom de repository)
+| Variable                          | Valeur                                 | Environment                      |
+| --------------------------------- | -------------------------------------- | -------------------------------- |
+| `NEXT_PUBLIC_PRISMIC_ENVIRONMENT` | `chapelle-tour-2026`                   | Production, Preview, Development |
+| `PRISMIC_WEBHOOK_SECRET`          | Générer avec `openssl rand -base64 32` | Production, Preview              |
+| `RESEND_API_KEY`                  | Votre clé API Resend                   | Production, Preview              |
+| `CONTACT_EMAIL`                   | `contact@lachapelledelatour2026.fr`    | Production, Preview, Development |
+| `NEXT_PUBLIC_SITE_URL`            | `https://lachapelledelatour2026.fr`    | Production                       |
+| `NEXT_PUBLIC_SITE_URL`            | `https://votre-preview.vercel.app`     | Preview                          |
+
+**Important :** Après avoir ajouté les variables, redéployer le site pour qu'elles soient prises en compte.
 
 ## 📦 Scripts disponibles
 
@@ -171,10 +229,122 @@ chapelle-tour-2026/
 
 ## 🔒 Sécurité
 
-- Pas de données sensibles dans le code
-- Variables d'environnement pour les secrets
-- TypeScript strict mode activé
-- ESLint avec règles de sécurité
+Le site implémente plusieurs couches de protection contre les vulnérabilités web courantes (OWASP Top 10) :
+
+### Headers de Sécurité (next.config.ts)
+
+| Header                        | Protection               | Description                                               |
+| ----------------------------- | ------------------------ | --------------------------------------------------------- |
+| **Content-Security-Policy**   | XSS, injection de code   | Contrôle les sources autorisées (scripts, images, styles) |
+| **Strict-Transport-Security** | Man-in-the-Middle        | Force HTTPS pendant 1 an (HSTS)                           |
+| **X-Frame-Options**           | Clickjacking             | Empêche l'affichage du site dans une iframe externe       |
+| **X-Content-Type-Options**    | MIME Sniffing            | Force le respect du Content-Type déclaré                  |
+| **X-XSS-Protection**          | XSS (navigateurs legacy) | Active le filtre XSS des anciens navigateurs              |
+| **Referrer-Policy**           | Fuite d'informations     | Contrôle les infos envoyées dans le header Referer        |
+| **Permissions-Policy**        | Abus de permissions      | Désactive caméra, micro, géolocalisation                  |
+
+### Protection API
+
+#### Endpoint `/api/revalidate` (webhook Prismic)
+
+- ✅ Authentification Bearer token
+- ✅ Protection contre DoS (spam de revalidation)
+- ✅ Vérification du secret webhook
+
+#### Endpoint `/api/contact` (formulaire)
+
+- ✅ **CSRF Protection** : Validation de l'origine de la requête
+- ✅ **Email Injection** : Blocage des caractères CRLF (`\r\n`)
+- ✅ **Sanitisation** : Nettoyage HTML et limitation de longueur
+- ✅ **Rate Limiting** : Client-side (5 soumissions/15 min)
+
+### Variables d'Environnement Sécurisées
+
+- ❌ Jamais commité dans Git (`.env` dans `.gitignore`)
+- ✅ Fichier `.env.example` avec placeholders génériques
+- ✅ Validation Zod au runtime
+- ✅ TypeScript strict mode activé
+- ✅ ESLint avec règles de sécurité
+
+### Bonnes Pratiques Appliquées
+
+- Respect de la norme RFC 5321 pour les emails (max 254 caractères)
+- Validation stricte avec Zod sur tous les inputs utilisateurs
+- Subject email fixe (pas de contenu utilisateur)
+- Pas de `any` en TypeScript
+- Aucune dépendance avec vulnérabilité connue (`npm audit` clean)
+
+### Tests de Sécurité
+
+Pour vérifier les headers en production :
+
+```bash
+curl -I https://lachapelledelatour2026.fr
+```
+
+Vous devriez voir tous les headers de sécurité listés ci-dessus.
+
+## 🔧 Dépannage
+
+### Erreur : "Webhook not configured" (500)
+
+**Cause :** Variable `PRISMIC_WEBHOOK_SECRET` manquante
+
+**Solution :**
+
+```bash
+# Générer un secret
+openssl rand -base64 32
+
+# L'ajouter dans .env
+echo "PRISMIC_WEBHOOK_SECRET=votre_secret_genere" >> .env
+```
+
+### Erreur : "Requête non autorisée" (403) sur le formulaire de contact
+
+**Cause :** Protection CSRF active, l'origine de la requête n'est pas autorisée
+
+**Solution :**
+
+- Vérifier que `NEXT_PUBLIC_SITE_URL` correspond à votre domaine
+- En développement local, mettre `http://localhost:3000`
+- En production, mettre `https://votre-domaine.fr`
+
+### Erreur : "Email contient des caractères invalides"
+
+**Cause :** L'email contient des retours à la ligne (`\r` ou `\n`)
+
+**Solution :** C'est normal, c'est une protection contre l'injection d'en-têtes. Vérifier que l'email est bien formaté.
+
+### Le webhook Prismic ne fonctionne pas
+
+**Vérifier :**
+
+1. Le secret est bien configuré dans Prismic (Settings → Webhooks)
+2. Le header `Authorization: Bearer VOTRE_SECRET` est bien ajouté
+3. L'URL du webhook est correcte : `https://votre-domaine.fr/api/revalidate`
+4. Tester le webhook manuellement :
+
+```bash
+curl -X POST https://votre-domaine.fr/api/revalidate \
+  -H "Authorization: Bearer VOTRE_SECRET"
+
+# Réponse attendue : {"revalidated":true,"now":1234567890}
+```
+
+### Content Security Policy bloque des ressources
+
+Si vous voyez des erreurs CSP dans la console :
+
+1. Identifier la source bloquée dans l'erreur
+2. Ajouter le domaine dans `next.config.ts` :
+
+```typescript
+// Exemple pour autoriser un nouveau CDN
+"img-src 'self' data: https://images.prismic.io https://nouveau-cdn.com",
+```
+
+3. Redémarrer le serveur de développement
 
 ## 📄 Licence
 
