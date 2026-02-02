@@ -127,24 +127,30 @@ export default function RootLayout({
           {
             "@type": "ListItem",
             position: 2,
+            name: "Bilan",
+            item: `${SITE_URL}#summary`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
             name: "Nos priorités",
             item: `${SITE_URL}#priorities`,
           },
           {
             "@type": "ListItem",
-            position: 3,
+            position: 4,
             name: "Notre équipe",
             item: `${SITE_URL}#team`,
           },
           {
             "@type": "ListItem",
-            position: 4,
+            position: 5,
             name: "Événements",
             item: `${SITE_URL}#events`,
           },
           {
             "@type": "ListItem",
-            position: 5,
+            position: 6,
             name: "Contact",
             item: `${SITE_URL}#contact`,
           },

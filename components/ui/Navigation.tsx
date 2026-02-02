@@ -7,7 +7,7 @@ const Navigation = () => {
 
   const menuItems = [
     { label: "Accueil", href: "#" },
-    { label: "Bilan", href: "#bilan" },
+    { label: "Bilan", href: "#summary" },
     { label: "Notre équipe", href: "#team" },
     { label: "Contact", href: "#contact" },
     { label: "Événements", href: "#events" },
