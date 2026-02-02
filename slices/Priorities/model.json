@@ -36,10 +36,18 @@
             "label": "Priorities",
             "fields": {
               "icon": {
-                "type": "Text",
+                "type": "Select",
                 "config": {
-                  "label": "Icon",
-                  "placeholder": "🌱 (emoji ou texte)"
+                  "label": "Icône",
+                  "placeholder": "Choisir une icône",
+                  "options": [
+                    "enfance_jeunesse_seniors",
+                    "environnement_cadre_vie",
+                    "soutien_economique_patrimoine",
+                    "solidarite_social_vie_pratique",
+                    "securite_prevention",
+                    "sport_associations"
+                  ]
                 }
               },
               "title": {
