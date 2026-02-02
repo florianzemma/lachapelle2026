@@ -1,5 +1,6 @@
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { bilanIcons, defaultIcon } from "../Summary/icons";
 
 export type PrioritiesProps = SliceComponentProps<Content.PrioritiesSlice>;
 
@@ -32,13 +33,13 @@ const Priorities = ({ slice }: PrioritiesProps) => {
               className="group relative overflow-hidden rounded-xl border border-border bg-white p-6 shadow-sm transition hover:border-primary-light hover:shadow-lg"
             >
               {/* Icon */}
-              {priority.icon && (
-                <div className="mb-4 flex items-center justify-center">
-                  <div className="bg-primary/10 flex h-16 w-16 items-center justify-center rounded-full text-4xl shadow-sm transition-transform group-hover:scale-110">
-                    {priority.icon}
-                  </div>
+              <div className="mb-4 flex items-center justify-center">
+                <div className="bg-primary/10 flex h-16 w-16 items-center justify-center rounded-2xl text-primary shadow-sm transition-transform group-hover:scale-110">
+                  {priority.icon && bilanIcons[priority.icon]
+                    ? bilanIcons[priority.icon]
+                    : defaultIcon}
                 </div>
-              )}
+              </div>
 
               {/* Priority Title */}
               <h3 className="mb-3 text-center text-xl font-semibold text-primary">
