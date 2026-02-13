@@ -28,8 +28,7 @@ type PickContentRelationshipFieldData<
       TSubRelationship["customtypes"],
       TLang
     >;
-  } & {
-    // Group
+  } & { // Group
     [TGroup in Extract<
       TRelationship["fields"][number],
       | prismic.CustomTypeModelFetchGroupLevel1
@@ -41,8 +40,7 @@ type PickContentRelationshipFieldData<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
-  } & {
-    // Other fields
+  } & { // Other fields
     [TFieldKey in Extract<
       TRelationship["fields"][number],
       string
@@ -70,6 +68,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type HomepageDocumentDataSlicesSlice =
+  | FinancialInsightsSlice
   | EventsSlice
   | BilanSlice
   | PrioritiesSlice
@@ -533,6 +532,108 @@ type EventsSliceVariation = EventsSliceDefault;
 export type EventsSlice = prismic.SharedSlice<"events", EventsSliceVariation>;
 
 /**
+ * Item in *FinancialInsights → Default → Primary → Financial Cards*
+ */
+export interface FinancialInsightsSliceDefaultPrimaryFinancialCardsItem {
+  /**
+   * Title field in *FinancialInsights → Default → Primary → Financial Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Budget Total
+   * - **API ID Path**: financial_insights.default.primary.financial_cards[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Subtitle field in *FinancialInsights → Default → Primary → Financial Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Investissements réalisés
+   * - **API ID Path**: financial_insights.default.primary.financial_cards[].subtitle
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  subtitle: prismic.KeyTextField;
+
+  /**
+   * Value field in *FinancialInsights → Default → Primary → Financial Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: 2,5 M€
+   * - **API ID Path**: financial_insights.default.primary.financial_cards[].value
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  value: prismic.KeyTextField;
+
+  /**
+   * Period field in *FinancialInsights → Default → Primary → Financial Cards*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: fin 2024
+   * - **API ID Path**: financial_insights.default.primary.financial_cards[].period
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  period: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *FinancialInsights → Default → Primary*
+ */
+export interface FinancialInsightsSliceDefaultPrimary {
+  /**
+   * Section Title field in *FinancialInsights → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Indicateurs Financiers
+   * - **API ID Path**: financial_insights.default.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  section_title: prismic.RichTextField;
+
+  /**
+   * Financial Cards field in *FinancialInsights → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: financial_insights.default.primary.financial_cards[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  financial_cards: prismic.GroupField<
+    Simplify<FinancialInsightsSliceDefaultPrimaryFinancialCardsItem>
+  >;
+}
+
+/**
+ * Default variation for FinancialInsights Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FinancialInsightsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FinancialInsightsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FinancialInsights*
+ */
+type FinancialInsightsSliceVariation = FinancialInsightsSliceDefault;
+
+/**
+ * FinancialInsights Shared Slice
+ *
+ * - **API ID**: `financial_insights`
+ * - **Description**: Section des indicateurs financiers de la commune
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type FinancialInsightsSlice = prismic.SharedSlice<
+  "financial_insights",
+  FinancialInsightsSliceVariation
+>;
+
+/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -629,14 +730,21 @@ export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
  */
 export interface PrioritiesSliceDefaultPrimaryPrioritiesItem {
   /**
-   * Icon field in *Priorities → Default → Primary → Priorities*
+   * Icône field in *Priorities → Default → Primary → Priorities*
    *
-   * - **Field Type**: Text
-   * - **Placeholder**: 🌱 (emoji ou texte)
+   * - **Field Type**: Select
+   * - **Placeholder**: Choisir une icône
    * - **API ID Path**: priorities.default.primary.priorities[].icon
-   * - **Documentation**: https://prismic.io/docs/fields/text
+   * - **Documentation**: https://prismic.io/docs/fields/select
    */
-  icon: prismic.KeyTextField;
+  icon: prismic.SelectField<
+    | "enfance_jeunesse_seniors"
+    | "environnement_cadre_vie"
+    | "soutien_economique_patrimoine"
+    | "solidarite_social_vie_pratique"
+    | "securite_prevention"
+    | "sport_associations"
+  >;
 
   /**
    * Title field in *Priorities → Default → Primary → Priorities*
@@ -934,6 +1042,11 @@ declare module "@prismicio/client" {
       EventsSliceDefaultPrimary,
       EventsSliceVariation,
       EventsSliceDefault,
+      FinancialInsightsSlice,
+      FinancialInsightsSliceDefaultPrimaryFinancialCardsItem,
+      FinancialInsightsSliceDefaultPrimary,
+      FinancialInsightsSliceVariation,
+      FinancialInsightsSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

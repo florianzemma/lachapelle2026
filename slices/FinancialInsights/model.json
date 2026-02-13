@@ -1,0 +1,64 @@
+{
+  "id": "financial_insights",
+  "type": "SharedSlice",
+  "name": "FinancialInsights",
+  "description": "Section des indicateurs financiers de la commune",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "Indicateurs Financiers",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "financial_cards": {
+          "type": "Group",
+          "config": {
+            "label": "Financial Cards",
+            "fields": {
+              "title": {
+                "type": "Text",
+                "config": {
+                  "label": "Title",
+                  "placeholder": "Budget Total"
+                }
+              },
+              "subtitle": {
+                "type": "Text",
+                "config": {
+                  "label": "Subtitle",
+                  "placeholder": "Investissements réalisés"
+                }
+              },
+              "value": {
+                "type": "Text",
+                "config": {
+                  "label": "Value",
+                  "placeholder": "2,5 M€"
+                }
+              },
+              "period": {
+                "type": "Text",
+                "config": {
+                  "label": "Period",
+                  "placeholder": "fin 2024"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
