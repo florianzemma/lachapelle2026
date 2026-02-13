@@ -1,0 +1,37 @@
+[
+  {
+    "variation": "default",
+    "name": "Default",
+    "slice_type": "financial_insights",
+    "items": [],
+    "primary": {
+      "section_title": [
+        {
+          "type": "heading2",
+          "text": "Indicateurs Financiers",
+          "spans": []
+        }
+      ],
+      "financial_cards": [
+        {
+          "title": "Budget Total",
+          "subtitle": "Investissements réalisés",
+          "value": "2,5 M€",
+          "period": "fin 2024"
+        },
+        {
+          "title": "Projets Financés",
+          "subtitle": "Initiatives locales soutenues",
+          "value": "47",
+          "period": "fin 2024"
+        },
+        {
+          "title": "Économies Générées",
+          "subtitle": "Optimisation des dépenses",
+          "value": "320 K€",
+          "period": "fin 2024"
+        }
+      ]
+    }
+  }
+]

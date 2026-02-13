@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "financial_insights": {
+              "type": "SharedSlice"
+            },
             "events": {
               "type": "SharedSlice"
             },

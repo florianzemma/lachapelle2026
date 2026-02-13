@@ -6,6 +6,7 @@ export const components = {
   bilan: dynamic(() => import("./Summary")),
   contact: dynamic(() => import("./Contact")),
   events: dynamic(() => import("./Events")),
+  financial_insights: dynamic(() => import("./FinancialInsights")),
   hero: dynamic(() => import("./Hero")),
   priorities: dynamic(() => import("./Priorities")),
   team: dynamic(() => import("./Team")),
