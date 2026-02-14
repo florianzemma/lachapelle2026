@@ -21,25 +21,32 @@ export const fraunces = Fraunces({
   variable: "--font-heading",
 });
 
+const SITE_NAME = "La Chapelle - Construire Ensemble pour Demain";
+const SITE_TITLE = "La Chapelle - Construire Ensemble pour Demain";
+const SITE_DESCRIPTION =
+  "La Chapelle 2026 Construire Ensemble pour Demain. Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour, Isère. Découvrez notre équipe, nos priorités et notre projet pour notre commune.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title:
-    "La Chapelle - Construire Ensemble pour Demain - Élections Municipales 2026",
-  description:
-    "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour, Isère. Découvrez notre équipe, nos priorités et notre vision pour notre commune.",
+  title: `${SITE_TITLE} - ${SITE_NAME}`,
+  description: SITE_DESCRIPTION,
   keywords: [
+    "la chapelle 2026",
+    "la chapelle village d'avenir",
+    "village d'avenir la chapelle",
     "la chapelle de la tour 2026",
     "la chapelle construire ensemble pour demain",
-    "la chapelle 2026",
     "la chapelle de la tour",
+    "village avenir",
     "elections",
     "élections municipales",
     "La Chapelle de la Tour",
     "Isère",
     "municipales 2026",
     "liste électorale",
+    "projet municipal la chapelle",
   ],
-  authors: [{ name: "La Chapelle - Construire Ensemble pour Demain" }],
+  authors: [{ name: SITE_NAME }],
   icons: {
     icon: "/favicon.ico",
     apple: "/favicon.ico",
@@ -48,18 +55,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     url: SITE_URL,
-    siteName: "La Chapelle - Construire Ensemble pour Demain",
-    title:
-      "La Chapelle - Construire Ensemble pour Demain - Élections Municipales 2026",
-    description:
-      "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour, Isère. Découvrez notre équipe, nos priorités et notre vision pour notre commune.",
+    siteName: SITE_TITLE,
+    title: `${SITE_TITLE} - ${SITE_NAME}`,
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "La Chapelle - Construire Ensemble pour Demain - Élections Municipales 2026",
-    description:
-      "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour, Isère.",
+    title: `${SITE_TITLE} - ${SITE_NAME}`,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -90,10 +93,10 @@ export default function RootLayout({
       {
         "@type": "Organization",
         "@id": `${SITE_URL}/#organization`,
-        name: "La Chapelle - Construire Ensemble pour Demain",
+        name: SITE_TITLE,
+        alternateName: SITE_NAME,
         url: SITE_URL,
-        description:
-          "Liste électorale pour les élections municipales 2026 à La Chapelle de la Tour",
+        description: SITE_DESCRIPTION,
         sameAs: ["https://www.facebook.com/profile.php?id=61587248212379"],
         areaServed: {
           "@type": "City",
@@ -104,14 +107,14 @@ export default function RootLayout({
             name: "Isère",
           },
         },
+        slogan: "Construire ensemble un village d'avenir",
       },
       {
         "@type": "WebSite",
         "@id": `${SITE_URL}/#website`,
         url: SITE_URL,
-        name: "La Chapelle - Construire Ensemble pour Demain",
-        description:
-          "Site officiel de la liste électorale La Chapelle - Construire ensemble pour demain pour les élections municipales 2026",
+        name: SITE_TITLE,
+        description: SITE_DESCRIPTION,
         inLanguage: "fr-FR",
       },
       {
