@@ -10,4 +10,5 @@ export const components = {
   hero: dynamic(() => import("./Hero")),
   priorities: dynamic(() => import("./Priorities")),
   team: dynamic(() => import("./Team")),
+  post: dynamic(() => import("./Post")),
 };

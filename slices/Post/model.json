@@ -1,0 +1,87 @@
+{
+  "id": "post",
+  "type": "SharedSlice",
+  "name": "Post",
+  "description": "Section post avec question/réponse et blocs de contenu variés",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Titre Global (Optionnel)",
+            "placeholder": "Ex: Vos questions, nos réponses",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "posts": {
+          "type": "Group",
+          "config": {
+            "label": "Liste des Posts",
+            "fields": {
+              "question": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Question",
+                  "placeholder": "Ex: Sécurité des déplacements piétons",
+                  "allowTargetBlank": true,
+                  "single": "heading2"
+                }
+              },
+              "sub_question": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "Sous-question",
+                  "placeholder": "Ex: Quelles sont les mesures pour améliorer la visibilité...",
+                  "allowTargetBlank": true,
+                  "single": "paragraph"
+                }
+              },
+              "content_blocks": {
+                "type": "Group",
+                "config": {
+                  "label": "Blocs de contenu",
+                  "fields": {
+                    "title": {
+                      "type": "Text",
+                      "config": {
+                        "label": "Titre du bloc",
+                        "placeholder": "Ex: LE CONSTAT"
+                      }
+                    },
+                    "content": {
+                      "type": "StructuredText",
+                      "config": {
+                        "label": "Contenu du bloc",
+                        "placeholder": "Texte du bloc...",
+                        "allowTargetBlank": true,
+                        "multi": "paragraph,strong,em,hyperlink,list-item"
+                      }
+                    },
+                    "type": {
+                      "type": "Select",
+                      "config": {
+                        "label": "Style du bloc",
+                        "placeholder": "Choisir un style",
+                        "options": ["default", "highlight", "list", "info"],
+                        "default_value": "default"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
