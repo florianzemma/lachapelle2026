@@ -68,6 +68,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type HomepageDocumentDataSlicesSlice =
+  | PostSlice
   | FinancialInsightsSlice
   | EventsSlice
   | BilanSlice
@@ -726,6 +727,134 @@ type HeroSliceVariation = HeroSliceDefault;
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
 /**
+ * Item in *Post → Default → Primary → Liste des Posts → Blocs de contenu*
+ */
+export interface PostSliceDefaultPrimaryPostsContentBlocksItem {
+  /**
+   * Titre du bloc field in *Post → Default → Primary → Liste des Posts → Blocs de contenu*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Ex: LE CONSTAT
+   * - **API ID Path**: post.default.primary.posts[].content_blocks[].title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Contenu du bloc field in *Post → Default → Primary → Liste des Posts → Blocs de contenu*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Texte du bloc...
+   * - **API ID Path**: post.default.primary.posts[].content_blocks[].content
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Style du bloc field in *Post → Default → Primary → Liste des Posts → Blocs de contenu*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Choisir un style
+   * - **Default Value**: default
+   * - **API ID Path**: post.default.primary.posts[].content_blocks[].type
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  type: prismic.SelectField<
+    "default" | "highlight" | "list" | "info",
+    "filled"
+  >;
+}
+
+/**
+ * Item in *Post → Default → Primary → Liste des Posts*
+ */
+export interface PostSliceDefaultPrimaryPostsItem {
+  /**
+   * Question field in *Post → Default → Primary → Liste des Posts*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Ex: Sécurité des déplacements piétons
+   * - **API ID Path**: post.default.primary.posts[].question
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  question: prismic.RichTextField;
+
+  /**
+   * Sous-question field in *Post → Default → Primary → Liste des Posts*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Ex: Quelles sont les mesures pour améliorer la visibilité...
+   * - **API ID Path**: post.default.primary.posts[].sub_question
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  sub_question: prismic.RichTextField;
+
+  /**
+   * Blocs de contenu field in *Post → Default → Primary → Liste des Posts*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.default.primary.posts[].content_blocks[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  content_blocks: prismic.NestedGroupField<
+    Simplify<PostSliceDefaultPrimaryPostsContentBlocksItem>
+  >;
+}
+
+/**
+ * Primary content in *Post → Default → Primary*
+ */
+export interface PostSliceDefaultPrimary {
+  /**
+   * Titre Global (Optionnel) field in *Post → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Ex: Vos questions, nos réponses
+   * - **API ID Path**: post.default.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  section_title: prismic.RichTextField;
+
+  /**
+   * Liste des Posts field in *Post → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: post.default.primary.posts[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  posts: prismic.GroupField<Simplify<PostSliceDefaultPrimaryPostsItem>>;
+}
+
+/**
+ * Default variation for Post Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PostSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PostSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Post*
+ */
+type PostSliceVariation = PostSliceDefault;
+
+/**
+ * Post Shared Slice
+ *
+ * - **API ID**: `post`
+ * - **Description**: Section post avec question/réponse et blocs de contenu variés
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PostSlice = prismic.SharedSlice<"post", PostSliceVariation>;
+
+/**
  * Item in *Priorities → Default → Primary → Priorities*
  */
 export interface PrioritiesSliceDefaultPrimaryPrioritiesItem {
@@ -1051,6 +1180,12 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      PostSlice,
+      PostSliceDefaultPrimaryPostsContentBlocksItem,
+      PostSliceDefaultPrimaryPostsItem,
+      PostSliceDefaultPrimary,
+      PostSliceVariation,
+      PostSliceDefault,
       PrioritiesSlice,
       PrioritiesSliceDefaultPrimaryPrioritiesItem,
       PrioritiesSliceDefaultPrimary,
