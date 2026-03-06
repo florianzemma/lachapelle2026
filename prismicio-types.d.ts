@@ -28,7 +28,8 @@ type PickContentRelationshipFieldData<
       TSubRelationship["customtypes"],
       TLang
     >;
-  } & { // Group
+  } & {
+    // Group
     [TGroup in Extract<
       TRelationship["fields"][number],
       | prismic.CustomTypeModelFetchGroupLevel1
@@ -40,7 +41,8 @@ type PickContentRelationshipFieldData<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
-  } & { // Other fields
+  } & {
+    // Other fields
     [TFieldKey in Extract<
       TRelationship["fields"][number],
       string
@@ -71,6 +73,7 @@ type HomepageDocumentDataSlicesSlice =
   | PostSlice
   | FinancialInsightsSlice
   | EventsSlice
+  | ProgrammeSlice
   | BilanSlice
   | PrioritiesSlice
   | ContactSlice
@@ -846,6 +849,101 @@ export type PostSliceDefault = prismic.SharedSliceVariation<
 type PostSliceVariation = PostSliceDefault;
 
 /**
+ * Primary content in *Programme → Default → Primary*
+ */
+export interface ProgrammeSliceDefaultPrimary {
+  /**
+   * Titre de section field in *Programme → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Notre Programme
+   * - **API ID Path**: programme.default.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  section_title: prismic.RichTextField;
+
+  /**
+   * Image du programme field in *Programme → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programme.default.primary.programme_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  programme_image: prismic.ImageField<never>;
+
+  /**
+   * Titre (optionnel) field in *Programme → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Notre programme 2026
+   * - **API ID Path**: programme.default.primary.programme_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  programme_title: prismic.RichTextField;
+
+  /**
+   * Description (optionnel) field in *Programme → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programme.default.primary.programme_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  programme_description: prismic.RichTextField;
+
+  /**
+   * Texte du bouton (optionnel) field in *Programme → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: En savoir plus
+   * - **API ID Path**: programme.default.primary.cta_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_text: prismic.KeyTextField;
+
+  /**
+   * Lien du bouton (optionnel) field in *Programme → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: https://...
+   * - **API ID Path**: programme.default.primary.cta_link
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  cta_link: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Programme Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProgrammeSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProgrammeSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Programme*
+ */
+type ProgrammeSliceVariation = ProgrammeSliceDefault;
+
+/**
+ * Programme Shared Slice
+ *
+ * - **API ID**: `programme`
+ * - **Description**: Section programme avec image et texte optionnel
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProgrammeSlice = prismic.SharedSlice<
+  "programme",
+  ProgrammeSliceVariation
+>;
+
+/**
  * Post Shared Slice
  *
  * - **API ID**: `post`
@@ -1180,6 +1278,10 @@ declare module "@prismicio/client" {
       HeroSliceDefaultPrimary,
       HeroSliceVariation,
       HeroSliceDefault,
+      ProgrammeSlice,
+      ProgrammeSliceDefaultPrimary,
+      ProgrammeSliceVariation,
+      ProgrammeSliceDefault,
       PostSlice,
       PostSliceDefaultPrimaryPostsContentBlocksItem,
       PostSliceDefaultPrimaryPostsItem,

@@ -1,0 +1,67 @@
+{
+  "id": "programme",
+  "type": "SharedSlice",
+  "name": "Programme",
+  "description": "Section programme avec image et texte optionnel",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Titre de section",
+            "placeholder": "Notre Programme",
+            "allowTargetBlank": true,
+            "single": "heading2"
+          }
+        },
+        "programme_image": {
+          "type": "Image",
+          "config": {
+            "label": "Image du programme",
+            "constraint": { "width": 1200 },
+            "thumbnails": []
+          }
+        },
+        "programme_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Titre (optionnel)",
+            "placeholder": "Notre programme 2026",
+            "allowTargetBlank": true,
+            "single": "heading3"
+          }
+        },
+        "programme_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description (optionnel)",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
+          }
+        },
+        "cta_text": {
+          "type": "Text",
+          "config": {
+            "label": "Texte du bouton (optionnel)",
+            "placeholder": "En savoir plus"
+          }
+        },
+        "cta_link": {
+          "type": "Text",
+          "config": {
+            "label": "Lien du bouton (optionnel)",
+            "placeholder": "https://..."
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
