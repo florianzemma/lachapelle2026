@@ -1,6 +1,9 @@
 "use client";
 
-import { Content, PostSliceDefaultPrimaryPostsItem } from "@prismicio/client";
+import { Content } from "@prismicio/client";
+
+type PostSliceDefaultPrimaryPostsItem =
+  Content.PostSliceDefaultPrimaryPostsItem;
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
